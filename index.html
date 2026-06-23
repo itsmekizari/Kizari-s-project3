@@ -34,7 +34,7 @@
         .btn-group {
             display: flex;
             justify-content: center;
-            align-items: left; /* ကြီးလာတဲ့အခါ အလယ်မှာ ညီနေအောင် ထည့်ပေးထားပါတယ် */
+            align-items: center; /* ကြီးလာတဲ့အခါ အလယ်မှာ ညီနေအောင် ထည့်ပေးထားပါတယ် */
             gap: 15px;
         }
         button {
@@ -70,7 +70,7 @@
         function showLove() {
             document.getElementById('img').src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
             document.getElementById('text').innerText = "ကိုလည်း ချစ်ပါတယ်နော်💘";
-            document.getElementById('btnGroup').style.display = 'none';
+            document.getElementById('btn-Group').style.display = 'none';
         }
 
         function moveNo() {
@@ -87,12 +87,15 @@
 
             // ၂။ Yes ခလုတ် ကြီးလာစေခြင်း
             yesSize += 2;
-            yesBtn.style.fontSize = yesSize + 'px';
-            yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
+            if(yesOnclick < 1) {
+                noBtn.style.display = 'none';
+                yesBtn.style.display = 'none';
+                yesBtn.style.fontSize = yesSize + 'px';
+                yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
 
             // ၃။ No ခလုတ် သေးသွားစေခြင်း
             noSize -= 2;
-            if(noSize < 2) {
+            if(noSize < 20) {
                 noBtn.style.display = 'none'; // အရမ်းသေးသွားရင် ပျောက်သွားမယ်
             } else {
                 noBtn.style.fontSize = noSize + 'px';
