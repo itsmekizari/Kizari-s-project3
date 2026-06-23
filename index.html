@@ -62,50 +62,6 @@
     </style>
 </head>
 <body>
-
-    <div class="card">
-        <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif" alt="Cute">
-        <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
-        
-        <div class="btn-group" id="btnGroup">
-            <button id="yes" onclick="showLove()">Yes</button>
-            <button id="no" onmouseover="moveNo(event)" ontouchstart="moveNo(event)">No</button>
-        </div>
-    </div>
-
-    <script>
-        let yesScale = 1;
-        let noScale = 1;
-
-        function showLove() {
-            document.getElementById('img').src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
-            document.getElementById('text').innerText = "ကိုလည်း ချစ်ပါတယ်နော်💘";
-            document.getElementById('btnGroup').style.display = 'none';
-        }
-
-        function moveNo(event) {
-            if(event && event.type === 'touchstart') {
-                event.preventDefault();
-            }
-
-            const noBtn = document.getElementById('no');
-            const yesBtn = document.getElementById('yes');
-            
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-
-            yesScale += 0.3;
-            yesBtn.style.transform = `scale(${yesScale})`;
-
-            noScale -= 0.15;
-
-    </style>
-</head>
-<body>
     <div class="card">
         <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
         <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
