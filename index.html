@@ -102,52 +102,12 @@
             yesBtn.style.transform = `scale(${yesScale})`;
 
             noScale -= 0.15;
-            if(noScale <= 0.2) {
-                noBtn.style.display = 'none';
-            } else {
-                noBtn.style.transform = `scale(${noScale})`;
-            }
-        }
-    </script>
-</body>
-</html>
-            margin-bottom: 20px;
-        }
 
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-
-        button {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: 0.2s;
-        }
-
-        #yes {
-            background-color: #ec4899;
-            color: white;
-        }
-
-        #no {
-            background-color: #9ca3af;
-            color: white;
-        }
     </style>
 </head>
 <body>
-
     <div class="card">
-        <img id="img"
-             src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
-
+        <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
         <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
         <div class="btn-group" id="btnGroup">
@@ -158,76 +118,7 @@
         </div>
     </div>
 
-    <script>
-        let yesSize = 16;
-        let noSize = 16;
-
-        function showLove() {
-            document.getElementById("img").src =
-                "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
-
-            document.getElementById("text").innerText =
-                "ကိုလည်း ချစ်ပါတယ်နော်💘";
-
-            document.getElementById("btnGroup").style.display = "none";
-        }
-
-        function moveNo() {
-            const noBtn = document.getElementById("no");
-            const yesBtn = document.getElementById("yes");
-
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 60);
-
-            noBtn.style.position = "fixed";
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-
-            yesSize += 4;
-            yesBtn.style.fontSize = yesSize + "px";
-            yesBtn.style.padding =
-                (yesSize / 2) + "px " + yesSize + "px";
-
-            noSize -= 1;
-
-            if (noSize <= 8) {
-                noBtn.style.display = "none";
-            } else {
-                noBtn.style.fontSize = noSize + "px";
-            }
-        }
-    </script>
-
-</body>
-</html>            align-items: center; /* ကြီးလာတဲ့အခါ အလယ်မှာ ညီနေအောင် ထည့်ပေးထားပါတယ် */
-            gap: 15px;
-        }
-        button {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: 0.1s; /* ကြီးလာတဲ့အခါ ညင်ညင်သာသာလေး ကြီးလာအောင်ပါ */
-        }
-        #yes { background-color: #ec4899; color: white; }
-        #no { background-color: #9ca3af; color: white; }
-    </style>
-</head>
-<body>
-
-    <div class="card" id="card">
-        <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif"
-        <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
-        
-        <div class="btn-group" id="btnGroup">
-            <button id="yes" onclick="showLove()">Yes</button>
-            <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No</button>
-        </div>
-    </div>
-
-    <script>
+<script>
         // အကြီးအသေး မှတ်ထားမယ့် ကိန်းဂဏန်းများကို အပေါ်ဆုံးမှာ ကြေညာရပါမယ်
         let yesSize = 16;
         let noSize = 16;
@@ -252,15 +143,12 @@
 
             // ၂။ Yes ခလုတ် ကြီးလာစေခြင်း
             yesSize += 2;
-            if(yesOnclick < 1) {
-                noBtn.style.display = 'none';
-                yesBtn.style.display = 'none';
                 yesBtn.style.fontSize = yesSize + 'px';
                 yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
 
             // ၃။ No ခလုတ် သေးသွားစေခြင်း
-            noSize -= 2;
-            if(noSize < 20) {
+            noSize -= 8;
+            if(noSize < 30) {
                 noBtn.style.display = 'none'; // အရမ်းသေးသွားရင် ပျောက်သွားမယ်
             } else {
                 noBtn.style.fontSize = noSize + 'px';
