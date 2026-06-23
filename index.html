@@ -66,11 +66,12 @@
         <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
         <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
-        <div class="btn-group" id="btnGroup">
+        <div class="btngroup" id="btnGroup">
             <button id="yes" onclick="showLove()">Yes</button>
             <button id="no"
-                    onmouseover="moveNo()"
-                    ontouchstart="moveNo()">No</button>
+        onmouseover="moveNo()"
+        onclick="moveNo()"
+        ontouchstart="moveNo()">
         </div>
     </div>
 
@@ -104,7 +105,7 @@
 
             // ၃။ No ခလုတ် သေးသွားစေခြင်း
             noSize -= 8;
-            if(noSize < 30) {
+            if(noSize < 10) {
                 noBtn.style.display = 'none'; // အရမ်းသေးသွားရင် ပျောက်သွားမယ်
             } else {
                 noBtn.style.fontSize = noSize + 'px';
