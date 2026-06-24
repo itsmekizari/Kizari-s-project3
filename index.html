@@ -41,13 +41,14 @@
             min-height: 50px;
         }
         button {
-            padding: 12px 25px;
+            width: 100px; /* Yes နဲ့ No ခလုတ် Size အစမှာ အတူတူဖြစ်အောင် ထိန်းပေးထားတာပါ */
+            padding: 12px 0; /* အပေါ်အောက် padding ပဲပေးပြီး width ကို ပုံသေသုံးလိုက်ပါတယ် */
             border: none;
             border-radius: 15px;
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
-            transition: transform 0.1s ease;
+            transition: transform 0.1s ease; /* Scale ချောချောမွေ့မွေ့ဖြစ်အောင်လို့ပါ */
         }
         #yes {
             background-color: #ec4899;
@@ -66,24 +67,21 @@
         <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
         <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
-        <div class="btngroup" id="btnGroup">
+        <div class="btn-group" id="btnGroup">
             <button id="yes" onclick="showLove()">Yes</button>
-            <button id="no"
-        onmouseover="moveNo()"
-        onclick="moveNo()"
-        ontouchstart="moveNo()">
+            <button id="no" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">No</button>
         </div>
     </div>
 
-<script>
-        // အကြီးအသေး မှတ်ထားမယ့် ကိန်းဂဏန်းများကို အပေါ်ဆုံးမှာ ကြေညာရပါမယ်
-        let yesSize = 16;
-        let noSize = 16;
+    <script>
+        // Layout မပျက်ဘဲ တိကျမှုရှိအောင် Scale စနစ်ကို သုံးထားပါတယ်
+        let yesScale = 1;
+        let noScale = 1;
 
         function showLove() {
             document.getElementById('img').src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
             document.getElementById('text').innerText = "ကိုလည်း ချစ်ပါတယ်နော်💘";
-            document.getElementById('btn-Group').style.display = 'none';
+            document.getElementById('btnGroup').style.display = 'none'; // ID စာလုံးပေါင်း ပြင်ဆင်ပြီး
         }
 
         function moveNo() {
@@ -91,25 +89,23 @@
             const yesBtn = document.getElementById('yes');
             
             // ၁။ ခလုတ်ကို window ရဲ့ random နေရာကို ရွှေ့ပေးခြင်း
-            const x = Math.random() * (window.innerWidth - 80);
-            const y = Math.random() * (window.innerHeight - 50);
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 60);
             
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
 
-            // ၂။ Yes ခလုတ် ကြီးလာစေခြင်း
-            yesSize += 2;
-                yesBtn.style.fontSize = yesSize + 'px';
-                yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
+            // ၂။ Yes ခလုတ် ပိုကြီးလာစေခြင်း (မူလ Size ထက်ပဲ အမြဲကြီးသွားပါမယ်)
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
 
             // ၃။ No ခလုတ် သေးသွားစေခြင်း
-            noSize -= 2;
-            if(noSize < 10) {
+            noScale -= 0.1;
+            if(noScale < 0.3) {
                 noBtn.style.display = 'none'; // အရမ်းသေးသွားရင် ပျောက်သွားမယ်
             } else {
-                noBtn.style.fontSize = noSize + 'px';
-                noBtn.style.padding = (noSize/2) + 'px ' + noSize + 'px'; // No ကိုပါ Padding သေးသွားအောင် ချိန်ပေးထားပါတယ်
+                noBtn.style.transform = `scale(${noScale})`;
             }
         }
     </script>
