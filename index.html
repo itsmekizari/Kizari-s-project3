@@ -1,102 +1,100 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forလေားရှည်မ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forလေားရှည်မ</title>
 
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fff0f5;
-            font-family: sans-serif;
-            margin: 0;
-            overflow: hidden;
-        }
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#fff0f5;
+    font-family:sans-serif;
+    overflow:hidden;
+}
 
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 85%;
-            max-width: 300px;
-            position: relative;
-            z-index: 2;
-        }
+.card{
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    text-align:center;
+    width:85%;
+    max-width:300px;
+}
 
-        img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
+img{
+    width:150px;
+    margin-bottom:20px;
+}
 
-        h2 {
-            color: #db2777;
-            margin-bottom: 20px;
-        }
+h2{
+    color:#db2777;
+    margin-bottom:20px;
+}
 
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            min-height: 50px;
-        }
+.btn-group{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
 
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-        }
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-        #yes {
-            background: #ec4899;
-            color: white;
-            transition: transform .2s ease;
-            transform-origin: center;
-            position: relative;
-            z-index: 1;
-        }
+/* YES Button */
+#yes{
+    background:#ec4899;
+    color:#fff;
+    position:fixed;
+    left:50%;
+    bottom:60px;
+    transform:translateX(-50%) scale(1);
+    transform-origin:center;
+    transition:transform .2s;
+    z-index:9999;
+}
 
-        #no {
-            background: #9ca3af;
-            color: white;
-            position: relative;
-            z-index: 999;
-        }
-    </style>
+/* NO Button */
+#no{
+    background:#9ca3af;
+    color:#fff;
+    z-index:99999;
+}
+</style>
 </head>
 
 <body>
 
 <div class="card">
 
-    <img id="img"
-        src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
+<img id="img"
+src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
 
-    <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
+<h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
-    <div class="btn-group" id="btnGroup">
+<div class="btn-group" id="btnGroup">
 
-        <button id="yes" onclick="showLove()">
-            Yes
-        </button>
+<button id="yes" onclick="showLove()">Yes</button>
 
-        <button id="no"
-            onmouseover="moveNo(event)"
-            onclick="moveNo(event)"
-            ontouchstart="moveNo(event)">
-            No
-        </button>
+<button id="no"
+onmouseover="moveNo(event)"
+onclick="moveNo(event)"
+ontouchstart="moveNo(event)">
+No
+</button>
 
-    </div>
+</div>
 
 </div>
 
@@ -113,40 +111,43 @@ function showLove(){
     document.getElementById("text").innerText =
     "ကိုလည်း ချစ်ပါတယ်နော်💘";
 
-    document.getElementById("btnGroup").style.display = "none";
+    document.getElementById("btnGroup").style.display="none";
 }
 
-function moveNo(event){
+function moveNo(e){
 
-    if(event){
-        event.preventDefault();
+    if(e) e.preventDefault();
+
+    const noBtn=document.getElementById("no");
+    const yesBtn=document.getElementById("yes");
+
+    // Random No Position
+    let x=Math.random()*(window.innerWidth-90);
+    let y=Math.random()*(window.innerHeight-60);
+
+    noBtn.style.position="fixed";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+
+    // Yes Button Grow (100% Screen)
+    yesScale+=0.2;
+
+    if(yesScale>8){
+        yesScale=8;
     }
 
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-
-    // No Button Random Position
-    const x = Math.random() * (window.innerWidth - 90);
-    const y = Math.random() * (window.innerHeight - 60);
-
-    noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
-    // Unlimited Yes Button Grow
-    yesScale += 1;
-    yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
+    yesBtn.style.transform=
+    `translateX(-50%) scale(${yesScale})`;
 
     // No Button Shrink
-    noSize -= 1.5;
+    noSize-=1.5;
 
-    if(noSize <= 6){
-        noBtn.style.display = "none";
+    if(noSize<=6){
+        noBtn.style.display="none";
     }else{
-        noBtn.style.fontSize = noSize + "px";
-        noBtn.style.padding = (noSize/2) + "px " + noSize + "px";
+        noBtn.style.fontSize=noSize+"px";
+        noBtn.style.padding=(noSize/2)+"px "+noSize+"px";
     }
-
 }
 
 </script>
