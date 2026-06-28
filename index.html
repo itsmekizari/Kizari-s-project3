@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forလေားရှည်မ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forလေားရှည်မ</title>
 
-<style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+
+    <img id="img"
+    src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
+
+    <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
+
+    <div class="btn-group" id="btnGroup">
+        <button id="yes" onclick="showLove()">Yes</button>
+        <button id="no" onclick="moveNo(event)">No</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
 *{
     margin:0;
     padding:0;
@@ -23,9 +46,9 @@ body{
 }
 
 .card{
-    background:#fff;
     width:85%;
     max-width:320px;
+    background:#fff;
     padding:35px;
     border-radius:20px;
     text-align:center;
@@ -51,115 +74,21 @@ h2{
 button{
     border:none;
     border-radius:15px;
-    padding:12px 25px;
-    font-size:18px;
-    font-weight:bold;
     cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
 }
 
 #yes{
     background:#ec4899;
-    color:white;
-    transition:all .3s ease;
-    position:relative;
-    z-index:999;
+    color:#fff;
+    font-size:16px;
+    padding:12px 25px;
 }
 
 #no{
     background:#9ca3af;
-    color:white;
-    z-index:9999;
+    color:#fff;
+    font-size:16px;
+    padding:12px 25px;
 }
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-<img id="img"
-src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
-
-<h2 id="text">ချစ်သေးလားဟင်🥹</h2>
-
-<div class="btn-group" id="btnGroup">
-
-<button id="yes" onclick="showLove()">
-Yes
-</button>
-
-<button id="no"
-onmouseover="moveNo(event)"
-onclick="moveNo(event)"
-ontouchstart="moveNo(event)">
-No
-</button>
-
-</div>
-
-</div>
-
-<script>
-
-let clickCount=0;
-let noSize=16;
-
-function showLove(){
-
-document.getElementById("img").src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
-
-document.getElementById("text").innerText="ကိုလည်း ချစ်ပါတယ်နော်💘";
-
-document.getElementById("btnGroup").style.display="none";
-}
-
-function moveNo(e){
-
-if(e)e.preventDefault();
-
-const noBtn=document.getElementById("no");
-const yesBtn=document.getElementById("yes");
-
-const x=Math.random()*(window.innerWidth-90);
-const y=Math.random()*(window.innerHeight-60);
-
-noBtn.style.position="fixed";
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
-
-clickCount++;
-
-if(clickCount<6){
-
-yesBtn.style.transform=`scale(${1+(clickCount*0.5)})`;
-
-}else{
-
-yesBtn.style.position="fixed";
-yesBtn.style.left="0";
-yesBtn.style.top="0";
-yesBtn.style.width="100vw";
-yesBtn.style.height="100vh";
-yesBtn.style.margin="0";
-yesBtn.style.borderRadius="0";
-yesBtn.style.fontSize="90px";
-yesBtn.style.transform="none";
-yesBtn.style.zIndex="999999";
-
-}
-
-noSize-=1.5;
-
-if(noSize<=6){
-noBtn.style.display="none";
-}else{
-noBtn.style.fontSize=noSize+"px";
-noBtn.style.padding=(noSize/2)+"px "+noSize+"px";
-}
-
-}
-
-</script>
-
-</body>
-</html>
