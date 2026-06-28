@@ -5,7 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forလေားရှည်မ</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff0f5;
+            font-family: sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 85%;
+            max-width: 300px;
+            position: relative;
+            z-index: 2;
+        }
+
+        img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #db2777;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            min-height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        #yes {
+            background: #ec4899;
+            color: white;
+            transition: transform .2s ease;
+            transform-origin: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #no {
+            background: #9ca3af;
+            color: white;
+            position: relative;
+            z-index: 999;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,82 +79,75 @@
 <div class="card">
 
     <img id="img"
-    src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
+        src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
 
     <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
     <div class="btn-group" id="btnGroup">
-        <button id="yes" onclick="showLove()">Yes</button>
-        <button id="no" onclick="moveNo(event)">No</button>
+
+        <button id="yes" onclick="showLove()">
+            Yes
+        </button>
+
+        <button id="no"
+            onmouseover="moveNo(event)"
+            onclick="moveNo(event)"
+            ontouchstart="moveNo(event)">
+            No
+        </button>
+
     </div>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+
+let yesScale = 1;
+let noSize = 16;
+
+function showLove(){
+
+    document.getElementById("img").src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
+
+    document.getElementById("text").innerText = "ကိုလည်း ချစ်ပါတယ်နော်💘";
+
+    document.getElementById("btnGroup").style.display = "none";
+}
+
+function moveNo(event){
+
+    if(event){
+        event.preventDefault();
+    }
+
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    // No Button Random Position
+    const x = Math.random() * (window.innerWidth - 90);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // Unlimited Yes Button Grow
+    yesScale += 0.2;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+    // No Button Shrink
+    noSize -= 1.5;
+
+    if(noSize <= 6){
+        noBtn.style.display = "none";
+    }else{
+        noBtn.style.fontSize = noSize + "px";
+        noBtn.style.padding = (noSize/2) + "px " + noSize + "px";
+    }
+
+}
+
+</script>
 
 </body>
 </html>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#fff0f5;
-    font-family:sans-serif;
-    overflow:hidden;
-}
-
-.card{
-    width:85%;
-    max-width:320px;
-    background:#fff;
-    padding:35px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
-
-img{
-    width:150px;
-    margin-bottom:20px;
-}
-
-h2{
-    color:#db2777;
-    margin-bottom:25px;
-}
-
-.btn-group{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-}
-
-button{
-    border:none;
-    border-radius:15px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
-}
-
-#yes{
-    background:#ec4899;
-    color:#fff;
-    font-size:16px;
-    padding:12px 25px;
-}
-
-#no{
-    background:#9ca3af;
-    color:#fff;
-    font-size:16px;
-    padding:12px 25px;
-}
