@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forလေားရှည်မ</title>
+
     <style>
         body {
             display: flex;
@@ -15,6 +16,7 @@
             margin: 0;
             overflow: hidden;
         }
+
         .card {
             background: white;
             padding: 40px;
@@ -24,15 +26,19 @@
             width: 85%;
             max-width: 300px;
             position: relative;
+            z-index: 2;
         }
+
         img {
             width: 150px;
             margin-bottom: 20px;
         }
+
         h2 {
             color: #db2777;
             margin-bottom: 20px;
         }
+
         .btn-group {
             display: flex;
             justify-content: center;
@@ -40,6 +46,7 @@
             gap: 15px;
             min-height: 50px;
         }
+
         button {
             padding: 12px 25px;
             border: none;
@@ -47,74 +54,102 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
-            transition: all 0.1s ease;
         }
+
         #yes {
-            background-color: #ec4899;
+            background: #ec4899;
             color: white;
+            transition: transform .2s ease;
+            transform-origin: center;
             position: relative;
-            z-index: 1; /* Yes ခလုတ်ကို အောက်မှာ ထားထားပါတယ် */
+            z-index: 1;
         }
+
         #no {
-            background-color: #9ca3af;
+            background: #9ca3af;
             color: white;
             position: relative;
-            z-index: 999; /* No ခလုတ်ကို အမြဲတမ်း ထိပ်ဆုံးမှာ ရှိနေစေမှာပါ */
+            z-index: 999;
         }
     </style>
 </head>
-<body>
-    <div class="card">
-        <img id="img" src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
-        <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
 
-        <div class="btn-group" id="btnGroup">
-            <button id="yes" onclick="showLove()">Yes</button>
-            <button id="no" onmouseover="moveNo(event)" onclick="moveNo(event)" ontouchstart="moveNo(event)">No</button>
-        </div>
+<body>
+
+<div class="card">
+
+    <img id="img"
+        src="https://media.tenor.com/aveJW-reuDAAAAAd/sad-lonely.gif">
+
+    <h2 id="text">ချစ်သေးလားဟင်🥹</h2>
+
+    <div class="btn-group" id="btnGroup">
+
+        <button id="yes" onclick="showLove()">
+            Yes
+        </button>
+
+        <button id="no"
+            onmouseover="moveNo(event)"
+            onclick="moveNo(event)"
+            ontouchstart="moveNo(event)">
+            No
+        </button>
+
     </div>
 
-    <script>
-        let yesSize = 1;
-        let noSize = 1;
+</div>
 
-        function showLove() {
-            document.getElementById('img').src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
-            document.getElementById('text').innerText = "ကိုလည်း ချစ်ပါတယ်နော်💘";
-            document.getElementById('btnGroup').style.display = 'none';
-        }
+<script>
 
-        function moveNo(event) {
-            // ဖုန်းမှာ ထိလိုက်လို့ ခလုတ်ပြေးသွားတဲ့အခါ အောက်က Yes ကို မနှိပ်မိအောင် တားဆီးပေးတာပါ
-            if (event) {
-                event.preventDefault();
-            }
+let yesScale = 1;
+let noSize = 16;
 
-            const noBtn = document.getElementById('no');
-            const yesBtn = document.getElementById('yes');
-            
-            // ၁။ ခလုတ်ကို window ရဲ့ random နေရာကို ရွှေ့ပေးခြင်း
-            const x = Math.random() * (window.innerWidth - 80);
-            const y = Math.random() * (window.innerHeight - 50);
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
+function showLove(){
 
-            // ၂။ Yes ခလုတ် ပုံမှန်အတိုင်း တဖြည်းဖြည်းချင်း ကြီးလာစေခြင်း
-            yesSize += 5;
-            yesBtn.style.fontSize = yesSize + 'px';
-            yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
+    document.getElementById("img").src =
+    "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-hug.gif";
 
-            // ၃။ No ခလုတ် သေးသွားစေခြင်း
-            noSize -= 2;
-            if(noSize < 10) {
-                noBtn.style.display = 'none'; 
-            } else {
-                noBtn.style.fontSize = noSize + 'px';
-                noBtn.style.padding = (noSize/2) + 'px ' + noSize + 'px'; 
-            }
-        }
-    </script>
+    document.getElementById("text").innerText =
+    "ကိုလည်း ချစ်ပါတယ်နော်💘";
+
+    document.getElementById("btnGroup").style.display = "none";
+}
+
+function moveNo(event){
+
+    if(event){
+        event.preventDefault();
+    }
+
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    // No Button Random Position
+    const x = Math.random() * (window.innerWidth - 90);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // Unlimited Yes Button Grow
+    yesScale += 0.5;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+    // No Button Shrink
+    noSize -= 1.5;
+
+    if(noSize <= 6){
+        noBtn.style.display = "none";
+    }else{
+        noBtn.style.fontSize = noSize + "px";
+        noBtn.style.padding = (noSize/2) + "px " + noSize + "px";
+    }
+
+}
+
+</script>
+
 </body>
 </html>
